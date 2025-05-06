@@ -1,0 +1,31 @@
+{
+  "name": "gesti-n-de-pedidos",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suarezjoa/gesti-n-de-pedidos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/suarezjoa/gesti-n-de-pedidos.git/issues"
+  },
+  "homepage": "https://github.com/suarezjoa/gesti-n-de-pedidos.git#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "redis": "^4.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

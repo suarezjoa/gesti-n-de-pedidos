@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  redis-local:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  backend:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - REDIS_LOCAL_URL=redis://redis-local:6379
+      - REDIS_CLOUD_URL=redis://default:BoUjk8scKVpa2G1nOmjuubsI72ChmfDk@redis-14058.c336.samerica-east1-1.gce.redns.redis-cloud.com:14058
+    depends_on:
+      redis-local:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data:
