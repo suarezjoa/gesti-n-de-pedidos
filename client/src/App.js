@@ -5,7 +5,7 @@ import axios from 'axios';
 import PedidoForm from './components/PedidoForm';
 import ListaPedidos from './components/ListaPedidos';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = '/api';
 
 function App() {
   const [pedidos, setPedidos] = useState([]);
